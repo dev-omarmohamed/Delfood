@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>دلفود | مطبخ الذواقة وتجربة الطهي الفاخر</title>
+  <!-- استيراد خطوط عربية فاخرة: Amiri للعناوين الكلاسيكية و Cairo للنصوص العصرية -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- مكتبة Tailwind CSS للتصميم المتجاوب -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#080A12',
+            velvet: '#111524',
+            velvetLight: '#181E33',
+            gold: {
+              DEFAULT: '#D4AF37',
+              light: '#F3D06B',
+              dark: '#AA8722',
+              muted: 'rgba(212, 175, 55, 0.22)'
+            },
+            ivory: '#F8F6F0',
+            silver: '#A3A8BC'
+          },
+          fontFamily: {
+            serif: ['Amiri', 'serif'],
+            sans: ['Cairo', 'sans-serif']
+          },
+          boxShadow: {
+            'gold-glow': '0 0 35px rgba(212, 175, 55, 0.18)',
+            'card-luxury': '0 20px 50px rgba(0, 0, 0, 0.65)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --obsidian: #080A12;
+      --velvet: #111524;
+      --gold: #D4AF37;
+      --gold-light: #F3D06B;
+      --ivory: #F8F6F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--obsidian);
+      color: var(--ivory);
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--obsidian);
+      color: var(--ivory);
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    /* شريط التمرير الفاخر */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080A12;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.35);
+      border-radius: 99px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #D4AF37;
+    }
+
+    /* تأثيرات الزجاج الفاخر */
+    .glass-nav {
+      background: rgba(8, 10, 18, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .glass-panel {
+      background: rgba(17, 21, 36, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+    }
+
+    .glass-drawer {
+      background: rgba(11, 14, 25, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-right: 1px solid rgba(212, 175, 55, 0.28);
+    }
+
+    /* تدرج النص الذهبي */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #F3D06B 0%, #D4AF37 50%, #B89128 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* زر ذهبي فاخر */
+    .btn-gold {
+      background: linear-gradient(135deg, #F3D06B 0%, #D4AF37 60%, #B89128 100%);
+      color: #080A12;
+      font-weight: 700;
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(212, 175, 55, 0.42);
+      filter: brightness(1.06);
+    }
+    .btn-gold:active {
+      transform: scale(0.97);
+    }
+
+    /* حركات الطفو والظهور */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-14px) rotate(2deg); }
+    }
+
+    @keyframes riseFade {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.35; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.08); }
+    }
+
+    .animate-float {
+      animation: floatSlow 5.5s ease-in-out infinite;
+    }
+
+    .animate-rise {
+      animation: riseFade 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .dish-card {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    .dish-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(212, 175, 55, 0.55);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.12);
+    }
+    .dish-card:hover .dish-img {
+      transform: scale(1.09);
+    }
+
+    /* تأثير نبض عداد السلة */
+    @keyframes cartPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.38); }
+      100% { transform: scale(1); }
+    }
+    .cart-bump {
+      animation: cartPop 0.38s ease;
+    }
+
+    /* قائمة السلة الجانبية (تفتح من اليسار في RTL) */
+    #cartDrawer {
+      transform: translateX(-105%);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #cartDrawer.open {
+      transform: translateX(0);
+    }
+
+    /* نافذة تتبع الطلب الكاملة */
+    #trackingOverlay {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s ease;
+    }
+    #trackingOverlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* إشعار التوست الذهبي */
+    .luxury-toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 90;
+      background: rgba(17, 21, 36, 0.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      color: #F8F6F0;
+      padding: 12px 26px;
+      border-radius: 999px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 20px rgba(212, 175, 55, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      animation: riseFade 0.35s ease both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-gold selection:text-obsidian">
+
+  <!-- الشريط العلوي الزجاجي الثابت -->
+  <nav class="glass-nav fixed top-0 inset-x-0 z-40 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <!-- الشعار الفاخر -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-11 h-11 rounded-full border border-gold/50 bg-velvet flex items-center justify-center shadow-gold-glow group-hover:border-gold transition-colors">
+          <svg class="w-6 h-6 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M7.05 16.95l-1.414 1.414m12.728 0l-1.414-1.414M7.05 7.05L5.636 5.636M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+          </svg>
+        </div>
+        <div>
+          <span class="font-serif text-2xl sm:text-3xl font-bold tracking-wide text-gold-gradient block leading-none">دلفود</span>
+          <span class="text-[11px] sm:text-xs text-silver tracking-wider block mt-0.5">مطبخ الذواقة</span>
+        </div>
+      </a>
+
+      <!-- روابط التنقل السريع (تظهر في الشاشات المتوسطة والكبيرة) -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ivory/85">
+        <a href="#featured" class="hover:text-gold transition-colors">أطباق الشيف</a>
+        <a href="#menu-section" class="hover:text-gold transition-colors">قائمة الطعام</a>
+        <a href="#philosophy" class="hover:text-gold transition-colors">فلسفتنا</a>
+      </div>
+
+      <!-- زر سلة المشتريات الفاخرة -->
+      <button id="openCartBtn" type="button" aria-label="فتح سلة المشتريات"
+        class="glass-panel hover:border-gold/60 px-4 sm:px-5 py-2.5 rounded-full flex items-center gap-2.5 transition-all group cursor-pointer">
+        <svg class="w-5 h-5 text-gold group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        <span class="text-sm font-semibold text-ivory">سلة الطلبات</span>
+        <span id="cartBadge" class="min-w-[24px] h-6 px-1.5 rounded-full bg-gold text-obsidian text-xs font-extrabold grid place-items-center">٠</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- القسم الافتتاحي الملكي (Hero Section) -->
+  <header class="relative min-h-[88vh] flex items-center justify-center pt-28 pb-32 px-4 overflow-hidden">
+    <!-- صورة خلفية فاخرة لطاولة طعام راقية -->
+    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1920&q=85"
+         alt="تجربة طعام فاخرة في مطعم دلفود"
+         onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=85'"
+         class="absolute inset-0 w-full h-full object-cover object-center scale-105 opacity-45">
+
+    <!-- تدرجات التعتيم والعمق البصري -->
+    <div class="absolute inset-0 bg-gradient-to-b from-obsidian/85 via-obsidian/70 to-obsidian"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.14)_0%,transparent_65%)]"></div>
+
+    <!-- هالة ذهبية متحركة في الخلفية -->
+    <div class="w-96 h-96 rounded-full bg-gold/10 blur-3xl absolute top-1/4 -right-20 pointer-events-none" style="animation: pulseGlow 8s infinite;"></div>
+    <div class="w-80 h-80 rounded-full bg-gold/10 blur-3xl absolute bottom-10 -left-20 pointer-events-none" style="animation: pulseGlow 10s infinite 2s;"></div>
+
+    <!-- محتوى الواجهة الرئيسية -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center animate-rise">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel text-gold text-xs sm:text-sm font-medium mb-6">
+        <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+        <span>تجربة طهي استثنائية بإشراف نخبة الطهاة</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight text-ivory mb-6">
+        فن الطهي الفاخر..
+        <span class="block text-gold-gradient mt-2">يُقدَّم إلى مائدتك</span>
+      </h1>
+
+      <p class="text-silver text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10 font-light">
+        ننتقي أجود المكونات الموسمية الطازجة ونحولها إلى تحف فنية تليق بذائقتك الرفيعة، مع خدمة توصيل ملكية تحافظ على حرارة ونكهة كل طبق.
+      </p>
+
+      <!-- شريط البحث الزجاجي المتكامل -->
+      <div class="max-w-2xl mx-auto glass-panel p-2 rounded-full flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shadow-card-luxury">
+        <div class="flex items-center flex-1 px-4 py-2">
+          <svg class="w-5 h-5 text-gold ml-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+          </svg>
+          <input id="searchInput" type="search" placeholder="ابحث عن طبقك المفضل، المكونات، أو النكهة..."
+                 aria-label="ابحث في قائمة الطعام"
+                 class="w-full bg-transparent border-0 text-ivory placeholder-silver/70 text-sm sm:text-base focus:outline-none">
+        </div>
+        <button id="searchBtn" type="button" class="btn-gold px-8 py-3 rounded-full text-sm sm:text-base cursor-pointer shrink-0">
+          استكشف القائمة
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20 pb-24">
+
+    <!-- ميداليات الأطباق التوقيعية العائمة (4 أطباق بصور حقيقية) -->
+    <section id="featured" aria-label="أطباق الشيف المختارة" class="mb-20">
+      <div id="floatingPlates" class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 max-w-4xl mx-auto"></div>
+    </section>
+
+    <!-- قسم قائمة الطعام الفاخرة -->
+    <section id="menu-section" class="scroll-mt-28">
+      <div class="text-center mb-10">
+        <span class="text-gold text-xs sm:text-sm font-semibold tracking-widest uppercase block mb-2">مختارات الذواقة</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-bold text-ivory">قائمة الأطباق الملكية</h2>
+        <div class="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-4"></div>
+      </div>
+
+      <!-- أزرار تصفية الفئات -->
+      <div id="categoryTabs" role="tablist" aria-label="تصنيفات القائمة" class="flex flex-wrap items-center justify-center gap-3 mb-12"></div>
+
+      <!-- شبكة عرض الأطباق -->
+      <div id="dishesGrid" aria-live="polite" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7"></div>
+    </section>
+
+    <!-- قسم فلسفة المطبخ الفاخر -->
+    <section id="philosophy" class="mt-28 glass-panel rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+      <div class="absolute -left-16 -bottom-16 w-64 h-64 rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
+        <div class="lg:col-span-2">
+          <span class="text-gold text-xs font-bold tracking-wider block mb-2">معايير التميز في دلفود</span>
+          <h3 class="font-serif text-2xl sm:text-4xl font-bold text-ivory mb-4">كل طبق يُحضَّر لحظة بلحظة لأجلك</h3>
+          <p class="text-silver text-sm sm:text-base leading-relaxed">
+            نلتزم بأعلى معايير الطهي العالمي، حيث نستخدم زيت الزيتون البكر العصرة الأولى، والتوابل الشرقية النادرة، واللحوم والأسماك الطازجة الموردة يومياً، لنضمن لك تجربة لا تُنسى في كل لقمة.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 text-center">
+          <div class="bg-obsidian/60 border border-gold/20 rounded-2xl p-5">
+            <span class="font-serif text-3xl font-bold text-gold block">١٠٠٪</span>
+            <span class="text-xs text-silver mt-1 block">مكونات طازجة يومياً</span>
+          </div>
+          <div class="bg-obsidian/60 border border-gold/20 rounded-2xl p-5">
+            <span class="font-serif text-3xl font-bold text-gold block">٣٠ د</span>
+            <span class="text-xs text-silver mt-1 block">توصيل حراري فائق</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- التذييل الفاخر (Footer) -->
+  <footer class="border-t border-gold/20 bg-[#05060B] py-12 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
+      <div>
+        <span class="font-serif text-2xl font-bold text-gold-gradient">دلفود - مطبخ الذواقة</span>
+        <p class="text-silver text-xs mt-1">وجهتك الأولى لتجربة الطهي الفاخر في منزلك.</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 text-xs text-silver">
+        <span>خدمة العملاء: ١٩٨٤٢</span>
+        <span>•</span>
+        <span>مواعيد العمل: يومياً من ٨ صباحاً حتى ٢ بعد منتصف الليل</span>
+      </div>
+      <p class="text-silver/60 text-xs">© ٢٠٢٦ جميع الحقوق محفوظة لمطعم دلفود الفاخر</p>
+    </div>
+  </footer>
+
+  <!-- نافذة المعاينة السريعة وتفاصيل الطبق (Quick View Modal) -->
+  <div id="dishModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"
+       class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-obsidian/85 backdrop-blur-md">
+    <div class="glass-panel rounded-3xl max-w-2xl w-full overflow-hidden shadow-card-luxury border border-gold/35 animate-rise relative">
+      <button id="closeModalBtn" type="button" aria-label="إغلاق النافذة"
+              class="absolute top-4 left-4 z-10 w-10 h-10 rounded-full bg-obsidian/80 border border-gold/40 text-ivory hover:text-gold hover:border-gold grid place-items-center transition-colors cursor-pointer">
+        ✕
+      </button>
+      <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="relative h-64 md:h-full min-h-[260px]">
+          <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-velvet via-transparent to-transparent md:hidden"></div>
+          <span id="modalBadge" class="absolute top-4 right-4 px-3 py-1 rounded-full bg-obsidian/85 border border-gold/40 text-gold text-xs font-semibold"></span>
+        </div>
+        <div class="p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 text-xs text-gold mb-2">
+              <span id="modalTime"></span>
+              <span>•</span>
+              <span id="modalCal"></span>
+            </div>
+            <h3 id="modalTitle" class="font-serif text-2xl sm:text-3xl font-bold text-ivory mb-3"></h3>
+            <p id="modalDesc" class="text-silver text-sm leading-relaxed mb-4"></p>
+            <div class="bg-obsidian/50 border border-gold/15 rounded-xl p-3.5 mb-6">
+              <span class="text-xs font-bold text-gold block mb-1">ملاحظة الشيف والمكونات:</span>
+              <p id="modalChefNote" class="text-xs text-ivory/85 leading-relaxed"></p>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm text-silver">السعر للطبق:</span>
+              <span id="modalPrice" class="font-serif text-2xl font-bold text-gold"></span>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex items-center bg-obsidian border border-gold/30 rounded-full px-2 py-1">
+                <button id="modalMinus" type="button" aria-label="تقليل الكمية" class="w-8 h-8 rounded-full text-gold hover:bg-gold/15 font-bold cursor-pointer">−</button>
+                <span id="modalQty" class="w-8 text-center font-bold text-sm">١</span>
+                <button id="modalPlus" type="button" aria-label="زيادة الكمية" class="w-8 h-8 rounded-full text-gold hover:bg-gold/15 font-bold cursor-pointer">+</button>
+              </div>
+              <button id="modalAddBtn" type="button" class="btn-gold flex-1 py-3 px-5 rounded-full text-sm cursor-pointer">
+                أضف إلى السلة
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- خلفية معتمة عند فتح سلة المشتريات -->
+  <div id="cartScrim" class="fixed inset-0 z-40 bg-obsidian/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- درج سلة المشتريات الجانبي (Slide-Over Drawer) -->
+  <aside id="cartDrawer" aria-label="سلة المشتريات" inert
+         class="glass-drawer fixed top-0 bottom-0 left-0 z-50 w-full max-w-md flex flex-col p-6 shadow-2xl">
+    <!-- رأس السلة -->
+    <div class="flex items-center justify-between pb-4 border-b border-gold/20">
+      <div>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ivory">سلة الطلبات</h2>
+        <p class="text-xs text-silver mt-0.5">راجع اختياراتك الفاخرة قبل التأكيد</p>
+      </div>
+      <button id="closeCartBtn" type="button" aria-label="إغلاق السلة"
+              class="w-10 h-10 rounded-full bg-velvet border border-gold/30 text-ivory hover:text-gold hover:border-gold grid place-items-center transition-colors cursor-pointer">
+        ✕
+      </button>
+    </div>
+
+    <!-- قائمة العناصر داخل السلة -->
+    <div id="cartItemsContainer" class="flex-1 overflow-y-auto my-4 space-y-3 pl-1"></div>
+
+    <!-- ملخص الفاتورة ونموذج بيانات التوصيل -->
+    <div class="border-t border-gold/20 pt-4 space-y-3">
+      <div class="space-y-1.5 text-sm">
+        <div class="flex justify-between text-silver">
+          <span>المجموع الفرعي</span>
+          <span id="subtotalText">٠ ج.م</span>
+        </div>
+        <div class="flex justify-between text-silver">
+          <span>رسوم التوصيل الملكي</span>
+          <span id="deliveryFeeText">٠ ج.م</span>
+        </div>
+        <div class="flex justify-between text-base font-bold text-ivory pt-2 border-t border-gold/15">
+          <span>الإجمالي النهائي</span>
+          <span id="grandTotalText" class="text-gold text-lg">٠ ج.م</span>
+        </div>
+      </div>
+
+      <!-- حقول إدخال بيانات العميل -->
+      <div class="space-y-2.5 pt-1">
+        <input id="customerName" type="text" autocomplete="name" placeholder="الاسم الكامل الكريم"
+               class="w-full bg-velvet/90 border border-gold/25 focus:border-gold rounded-xl px-4 py-2.5 text-sm text-ivory placeholder-silver/60 focus:outline-none">
+        <input id="customerAddress" type="text" autocomplete="street-address" placeholder="عنوان التوصيل بالتفصيل (الحي، الشارع، رقم العقار)"
+               class="w-full bg-velvet/90 border border-gold/25 focus:border-gold rounded-xl px-4 py-2.5 text-sm text-ivory placeholder-silver/60 focus:outline-none">
+        <input id="customerNotes" type="text" placeholder="ملاحظات إضافية للشيف أو المندوب (اختياري)"
+               class="w-full bg-velvet/90 border border-gold/25 focus:border-gold rounded-xl px-4 py-2 text-xs text-ivory placeholder-silver/60 focus:outline-none">
+      </div>
+
+      <p id="formError" role="alert" class="text-rose-400 text-xs min-h-[18px] font-medium"></p>
+
+      <button id="placeOrderBtn" type="button" class="btn-gold w-full py-3.5 rounded-full text-sm sm:text-base cursor-pointer">
+        تأكيد الطلب الفاخر
+      </button>
+    </div>
+  </aside>
+
+  <!-- شاشة تتبع الطلب المباشر الفاخرة (Full-Screen Tracking Overlay) -->
+  <section id="trackingOverlay" aria-live="polite" aria-label="تتبع حالة الطلب"
+           class="fixed inset-0 z-50 bg-obsidian/95 backdrop-blur-xl flex items-center justify-center p-4 overflow-y-auto">
+    <div class="glass-panel rounded-3xl max-w-2xl w-full p-6 sm:p-10 text-center border border-gold/40 shadow-card-luxury relative">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-gold/15 border border-gold/35 text-gold text-xs font-semibold mb-4">
+        <span>الطلب قيد المتابعة المباشرة</span>
+      </div>
+
+      <h2 class="font-serif text-3xl sm:text-4xl font-bold text-ivory mb-2">تتبع طلبك الملكي</h2>
+      <p class="text-silver text-sm mb-8">
+        رقم الطلب: <span id="orderNumberDisplay" class="text-gold font-bold tracking-wider"></span>
+        <span class="mx-2">•</span>
+        الإجمالي: <span id="orderTotalDisplay" class="text-ivory font-bold"></span>
+      </p>
+
+      <!-- شريط التقدم الذهبي المتحرك -->
+      <div class="relative max-w-lg mx-auto my-10 px-4">
+        <div class="h-1.5 w-full bg-velvetLight rounded-full overflow-hidden">
+          <div id="trackingProgressBar" class="h-full bg-gradient-to-l from-gold-light via-gold to-gold-dark transition-all duration-1000 ease-out" style="width: 0%"></div>
+        </div>
+        <!-- مؤشر التوصيل المتحرك -->
+        <div id="trackingCourierPin" class="absolute -top-4 transition-all duration-1000 ease-out" style="right: 0%">
+          <div class="w-9 h-9 rounded-full bg-gold text-obsidian shadow-gold-glow grid place-items-center transform translate-x-1/2">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- مراحل التتبع الأربعة -->
+      <div id="trackingStepsGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-xs"></div>
+
+      <!-- رسالة الحالة والوقت المتبقي -->
+      <div class="bg-obsidian/60 border border-gold/20 rounded-2xl p-5 mb-6">
+        <p id="trackingStatusTitle" class="text-lg sm:text-xl font-bold text-gold mb-1"></p>
+        <p id="trackingEtaText" class="text-silver text-sm"></p>
+      </div>
+
+      <button id="orderAgainBtn" type="button" hidden class="btn-gold px-8 py-3 rounded-full text-sm sm:text-base cursor-pointer">
+        اطلب مرة أخرى
+      </button>
+    </div>
+  </section>
+
+  <script>
+    // بيانات الأطباق الفاخرة باللغة العربية مع صور حقيقية عالية الدقة من Unsplash
+    const DISHES = [
+      {
+        id: 0,
+        category: 'breakfast',
+        badge: 'اختيار الشيف',
+        name: 'باستا الترافل والدجاج المشوي',
+        price: 190,
+        time: '٢٠ دقيقة',
+        calories: '٥٤٠ سعرة',
+        img: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=800&q=80',
+        desc: 'مكرونة فوزيلي إيطالية فاخرة مع شرائح الدجاج المشوي على الفحم وصلصة الكمأة البيضاء الكريمية.',
+        chefNote: 'تُحضّر باستخدام زيت الترافل الأسود الإيطالي وجبن البارميزان المعتق لمدة ٢٤ شهراً مع رشة سمسم محمص.'
+      },
+      {
+        id: 1,
+        category: 'breakfast',
+        badge: 'إفطار عضوي',
+        name: 'توست الأفوكادو والبيض العضوي',
+        price: 140,
+        time: '١٢ دقيقة',
+        calories: '٣٨٠ سعرة',
+        img: 'https://images.unsplash.com/photo-1525351484163-7529414342d8?auto=format&fit=crop&w=800&q=80',
+        desc: 'خبز الساوردو المحمص يدوياً مع هريس الأفوكادو الطازج والبيض العضوي المسلوق بعناية وزيت الزيتون البكر.',
+        chefNote: 'نستخدم أفوكادو هاس الناضج مع رقائق الفلفل الحار المدخن وبذور الشيا المحمصة.'
+      },
+      {
+        id: 2,
+        category: 'breakfast',
+        badge: 'الأكثر طلباً',
+        name: 'بان كيك الشوفان بالتوت البري والعسل',
+        price: 130,
+        time: '١٥ دقيقة',
+        calories: '٤١٠ سعرة',
+        img: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80',
+        desc: 'فطائر الشوفان الذهبية الهشة مغطاة بتشكيلة التوت البري الطازج وعسل السدر الجبلي النقي.',
+        chefNote: 'خالية من السكر المكرر، محلاة بعسل السدر الطبيعي ومزينة بأوراق النعناع الطازجة.'
+      },
+      {
+        id: 3,
+        category: 'lunch',
+        badge: 'طبق ملكي',
+        name: 'فيليه السلمون النرويجي المشوي',
+        price: 280,
+        time: '٢٥ دقيقة',
+        calories: '٦٢٠ سعرة',
+        img: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=800&q=80',
+        desc: 'شريحة سلمون نرويجي طازجة مشوية بتتبيلة الأعشاب والليمون، تُقدّم مع الخضروات الموسمية المشوية.',
+        chefNote: 'يُطهى السلمون بدرجة حرارة دقيقة ليحافظ على قوامه الطري الغني بأوميغا ٣ مع صلصة الزبدة والليمون.'
+      },
+      {
+        id: 4,
+        category: 'lunch',
+        badge: 'صحي ومتوازن',
+        name: 'وعاء الحبوب الكاملة والأفوكادو',
+        price: 230,
+        time: '١٥ دقيقة',
+        calories: '٤٥٠ سعرة',
+        img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
+        desc: 'توليفة غنية من الكينوا العضوية والخضروات الورقية الطازجة وشرائح التفاح الأخضر والأفوكادو.',
+        chefNote: 'يُقدّم مع تتبيلة الليمون والأعشاب العطرية وزيت الزيتون البكر الممتاز.'
+      },
+      {
+        id: 5,
+        category: 'lunch',
+        badge: 'دافئ ومخملي',
+        name: 'حساء اليقطين الكريمي بالبذور المحمصة',
+        price: 150,
+        time: '١٨ دقيقة',
+        calories: '٣١٠ سعرة',
+        img: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?auto=format&fit=crop&w=800&q=80',
+        desc: 'شوربة اليقطين الذهبي المخملية المطهوة ببطء مع الكريمة الطازجة وبذور اليقطين المحمصة.',
+        chefNote: 'مُتبّلة برشة خفيفة من جوزة الطيب والزنجبيل الطازج وتُقدّم مع خبز البريوش المحمص.'
+      },
+      {
+        id: 6,
+        category: 'dinner',
+        badge: 'مشويات خاصة',
+        name: 'ستيك الدجاج المشوي مع الجرجير والبارميزان',
+        price: 260,
+        time: '٢٢ دقيقة',
+        calories: '٥١٠ سعرة',
+        img: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80',
+        desc: 'صدر دجاج متبل بالأعشاب البرية ومشوي بإتقان فوق طبقة من الجرجير الطازج والطماطم الكرزية.',
+        chefNote: 'مغطى بشرائح جبن البارميزان الإيطالي الرقيقة وقطرات من خل البلسمك المعتق.'
+      },
+      {
+        id: 7,
+        category: 'dinner',
+        badge: 'تراث شرقي فاخر',
+        name: 'حساء العدس الملكي بالتوابل الشرقية',
+        price: 160,
+        time: '١٥ دقيقة',
+        calories: '٣٤٠ سعرة',
+        img: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=800&q=80',
+        desc: 'حساء العدس الأحمر الفاخر المطهو على نار هادئة مع الكمون المحمص وعصير الليمون الطازج.',
+        chefNote: 'يُقدّم ساخناً مع لمسة من زيت الزيتون المتبل بالبابريكا المدخنة والخبز المحمص المقرمش.'
+      }
+    ];
+
+    const CATEGORIES = [
+      { id: 'all', label: 'الكل' },
+      { id: 'breakfast', label: 'الإفطار' },
+      { id: 'lunch', label: 'الغداء' },
+      { id: 'dinner', label: 'العشاء' }
+    ];
+
+    const TRACKING_STAGES = [
+      { title: 'تم استلام الطلب', desc: 'استلمنا طلبك الفاخر وبدأنا مراجعة التفاصيل.' },
+      { title: 'قيد التحضير في المطبخ', desc: 'نخبة طهاتنا يجهزون أطباقك الآن بأعلى درجات العناية.' },
+      { title: 'المندوب في الطريق إليك', desc: 'طلبك في حافظة حرارية خاصة وفي طريقه إلى باب منزلك.' },
+      { title: 'تم التوصيل بالهناء والشفاء', desc: 'وصل طلبك بنجاح. نتمنى لك تجربة طعام ملكية!' }
+    ];
+
+    const DELIVERY_FEE = 40;
+    const FALLBACK_IMG = 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80';
+
+    // حالة التطبيق
+    let activeCategory = 'all';
+    let cart = {}; // { dishId: quantity }
+    let modalDishId = null;
+    let modalQuantity = 1;
+    let trackingTimer = null;
+    let trackingStep = 0;
+    let remainingMinutes = 30;
+
+    // أدوات مساعدة للأرقام العربية وتنسيق العملة
+    const toArabicDigits = (num) => Number(num).toLocaleString('ar-EG');
+    const formatPrice = (amount) => `${toArabicDigits(amount)} ج.م`;
+    const el = (selector) => document.querySelector(selector);
+
+    // إظهار إشعار Toast فاخر
+    function showToast(message) {
+      const existing = document.querySelector('.luxury-toast');
+      if (existing) existing.remove();
+
+      const toast = document.createElement('div');
+      toast.className = 'luxury-toast';
+      toast.setAttribute('role', 'status');
+      toast.innerHTML = `
+        <span class="w-2.5 h-2.5 rounded-full bg-gold shrink-0"></span>
+        <span>${message}</span>
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 2200);
+    }
+
+    // رسم ميداليات الأطباق التوقيعية الأربعة أسفل الهيرو
+    function renderFloatingPlates() {
+      const featuredIds = [0, 3, 4, 6];
+      const container = el('#floatingPlates');
+      container.innerHTML = featuredIds.map((id, idx) => {
+        const dish = DISHES.find(d => d.id === id);
+        return `
+          <button type="button" onclick="openDishModal(${dish.id})"
+                  class="group flex flex-col items-center text-center focus:outline-none cursor-pointer animate-float"
+                  style="animation-delay: ${idx * 0.6}s">
+            <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-full p-1.5 bg-gradient-to-b from-gold via-gold/40 to-transparent shadow-card-luxury group-hover:scale-105 transition-transform duration-500">
+              <img src="${dish.img}" alt="${dish.name}"
+                   onerror="this.src='${FALLBACK_IMG}'"
+                   class="w-full h-full object-cover rounded-full border-2 border-obsidian">
+            </div>
+            <span class="mt-3 text-xs sm:text-sm font-bold text-ivory group-hover:text-gold transition-colors line-clamp-1">${dish.name}</span>
+            <span class="text-xs text-gold font-semibold mt-0.5">${formatPrice(dish.price)}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    // رسم أزرار التصنيفات
+    function renderCategoryTabs() {
+      const container = el('#categoryTabs');
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isActive = cat.id === activeCategory;
+        return `
+          <button type="button" role="tab" aria-selected="${isActive}" data-cat="${cat.id}"
+                  class="px-6 py-2.5 rounded-full text-sm font-semibold transition-all cursor-pointer ${
+                    isActive
+                      ? 'btn-gold scale-105'
+                      : 'glass-panel text-ivory/85 hover:text-gold hover:border-gold/50'
+                  }">
+            ${cat.label}
+          </button>
+        `;
+      }).join('');
+    }
+
+    // رسم شبكة بطاقات الأطباق
+    function renderDishesGrid() {
+      const query = el('#searchInput').value.trim().toLowerCase();
+      const filtered = DISHES.filter(dish => {
+        const matchesCat = activeCategory === 'all' || dish.category === activeCategory;
+        const matchesQuery = !query ||
+          dish.name.toLowerCase().includes(query) ||
+          dish.desc.toLowerCase().includes(query) ||
+          dish.chefNote.toLowerCase().includes(query);
+        return matchesCat && matchesQuery;
+      });
+
+      const grid = el('#dishesGrid');
+      if (!filtered.length) {
+        grid.innerHTML = `
+          <div class="col-span-full glass-panel rounded-3xl p-12 text-center">
+            <p class="font-serif text-2xl text-gold mb-2">لم نعثر على أطباق مطابقة</p>
+            <p class="text-silver text-sm">جرّب البحث بكلمة أخرى أو استعرض جميع أطباق القائمة الملكية.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((dish, idx) => {
+        const catObj = CATEGORIES.find(c => c.id === dish.category);
+        return `
+          <article class="dish-card glass-panel rounded-3xl overflow-hidden flex flex-col justify-between animate-rise"
+                   style="animation-delay: ${idx * 65}ms">
+            <div>
+              <!-- حاوية الصورة الفاخرة -->
+              <div class="relative h-56 overflow-hidden cursor-pointer group" onclick="openDishModal(${dish.id})">
+                <img src="${dish.img}" alt="${dish.name}" loading="lazy"
+                     onerror="this.src='${FALLBACK_IMG}'"
+                     class="dish-img w-full h-full object-cover transition-transform duration-700 ease-out">
+                <div class="absolute inset-0 bg-gradient-to-t from-velvet via-velvet/20 to-transparent"></div>
+
+                <!-- شارة الشيف -->
+                <span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-obsidian/80 backdrop-blur-md border border-gold/40 text-gold text-[11px] font-bold">
+                  ${dish.badge}
+                </span>
+
+                <!-- مدة التحضير والسعرات -->
+                <div class="absolute bottom-3 inset-x-3.5 flex items-center justify-between text-[11px] text-ivory/90 font-medium">
+                  <span class="px-2.5 py-0.5 rounded-full bg-obsidian/75 backdrop-blur-sm border border-white/10">⏱ ${dish.time}</span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-obsidian/75 backdrop-blur-sm border border-white/10">🔥 ${dish.calories}</span>
+                </div>
+              </div>
+
+              <!-- تفاصيل الطبق -->
+              <div class="p-5 pb-3">
+                <span class="text-[11px] font-semibold text-gold/90 tracking-wide">${catObj ? catObj.label : ''}</span>
+                <h3 onclick="openDishModal(${dish.id})"
+                    class="font-serif text-xl font-bold text-ivory hover:text-gold transition-colors cursor-pointer mt-1 mb-2 leading-snug">
+                  ${dish.name}
+                </h3>
+                <p class="text-silver text-xs leading-relaxed line-clamp-2">${dish.desc}</p>
+              </div>
+            </div>
+
+            <!-- السعر وزر الإضافة -->
+            <div class="px-5 pb-5 pt-3 flex items-center justify-between gap-2 border-t border-gold/10 mt-2">
+              <div>
+                <span class="text-[10px] text-silver block">السعر</span>
+                <span class="font-serif text-xl font-bold text-gold">${formatPrice(dish.price)}</span>
+              </div>
+              <button type="button" data-add-id="${dish.id}"
+                      class="btn-gold px-4 py-2.5 rounded-full text-xs flex items-center gap-1.5 cursor-pointer">
+                <span>أضف إلى السلة</span>
+                <span class="text-base leading-none">+</span>
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // حركة طيران صورة الطبق المصغرة إلى زر السلة
+    function animateFlyingThumbnail(sourceBtn, dishId) {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        bumpCartBadge();
+        return;
+      }
+
+      const dish = DISHES.find(d => d.id === Number(dishId));
+      const cartBtn = el('#openCartBtn');
+      if (!sourceBtn || !cartBtn || !dish) return;
+
+      const startRect = sourceBtn.getBoundingClientRect();
+      const endRect = cartBtn.getBoundingClientRect();
+
+      const flyer = document.createElement('img');
+      flyer.src = dish.img;
+      flyer.alt = '';
+      flyer.setAttribute('aria-hidden', 'true');
+      flyer.style.cssText = `
+        position: fixed;
+        z-index: 100;
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 9999px;
+        border: 2px solid #D4AF37;
+        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.55);
+        left: ${startRect.left + startRect.width / 2 - 24}px;
+        top: ${startRect.top + startRect.height / 2 - 24}px;
+        pointer-events: none;
+      `;
+      document.body.appendChild(flyer);
+
+      const deltaX = (endRect.left + endRect.width / 2) - (startRect.left + startRect.width / 2);
+      const deltaY = (endRect.top + endRect.height / 2) - (startRect.top + startRect.height / 2);
+
+      const anim = flyer.animate([
+        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+        { transform: `translate(${deltaX * 0.5}px, ${deltaY * 0.5 - 70}px) scale(1.25)`, opacity: 0.95, offset: 0.5 },
+        { transform: `translate(${deltaX}px, ${deltaY}px) scale(0.25)`, opacity: 0.2 }
+      ], {
+        duration: 720,
+        easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+      });
+
+      anim.onfinish = () => {
+        flyer.remove();
+        bumpCartBadge();
+      };
+    }
+
+    function bumpCartBadge() {
+      const badge = el('#cartBadge');
+      badge.classList.remove('cart-bump');
+      void badge.offsetWidth;
+      badge.classList.add('cart-bump');
+    }
+
+    // تحديث السلة والحسابات
+    function updateCartUI() {
+      const ids = Object.keys(cart).map(Number);
+      const totalItems = ids.reduce((sum, id) => sum + cart[id], 0);
+      const subtotal = ids.reduce((sum, id) => {
+        const dish = DISHES.find(d => d.id === id);
+        return sum + (dish ? dish.price * cart[id] : 0);
+      }, 0);
+      const fee = totalItems > 0 ? DELIVERY_FEE : 0;
+      const grandTotal = subtotal + fee;
+
+      el('#cartBadge').textContent = toArabicDigits(totalItems);
+      el('#subtotalText').textContent = formatPrice(subtotal);
+      el('#deliveryFeeText').textContent = formatPrice(fee);
+      el('#grandTotalText').textContent = formatPrice(grandTotal);
+
+      const container = el('#cartItemsContainer');
+      if (!ids.length) {
+        container.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center py-12 px-4">
+            <div class="w-16 h-16 rounded-full bg-velvet border border-gold/25 grid place-items-center text-gold mb-4">
+              <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </div>
+            <p class="font-serif text-xl text-ivory mb-1">سلتك فارغة حالياً</p>
+            <p class="text-xs text-silver leading-relaxed">اختر من قائمة أطباقنا الملكية لتبدأ رحلتك مع المذاق الرفيع.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = ids.map(id => {
+        const dish = DISHES.find(d => d.id === id);
+        const qty = cart[id];
+        return `
+          <div class="bg-velvet/80 border border-gold/20 rounded-2xl p-3 flex items-center gap-3.5">
+            <img src="${dish.img}" alt="${dish.name}"
+                 onerror="this.src='${FALLBACK_IMG}'"
+                 class="w-16 h-16 rounded-xl object-cover border border-gold/30 shrink-0">
+            <div class="flex-1 min-w-0">
+              <h4 class="font-serif text-base font-bold text-ivory truncate">${dish.name}</h4>
+              <span class="text-xs text-gold font-semibold block mt-0.5">${formatPrice(dish.price * qty)}</span>
+            </div>
+            <div class="flex items-center gap-2 bg-obsidian border border-gold/25 rounded-full px-2 py-1 shrink-0">
+              <button type="button" data-dec-id="${id}" aria-label="تقليل الكمية"
+                      class="w-6 h-6 rounded-full text-gold hover:bg-gold/15 text-sm font-bold cursor-pointer">−</button>
+              <span class="text-xs font-bold w-5 text-center">${toArabicDigits(qty)}</span>
+              <button type="button" data-inc-id="${id}" aria-label="زيادة الكمية"
+                      class="w-6 h-6 rounded-full text-gold hover:bg-gold/15 text-sm font-bold cursor-pointer">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function addToCart(dishId, quantity = 1, sourceBtn = null) {
+      const id = Number(dishId);
+      cart[id] = (cart[id] || 0) + quantity;
+      updateCartUI();
+      if (sourceBtn) {
+        animateFlyingThumbnail(sourceBtn, id);
+      } else {
+        bumpCartBadge();
+      }
+      showToast('تمت إضافة الطبق إلى سلتك');
+    }
+
+    // التحكم في درج السلة الجانبي
+    function toggleCartDrawer(open) {
+      const drawer = el('#cartDrawer');
+      const scrim = el('#cartScrim');
+      drawer.classList.toggle('open', open);
+      drawer.inert = !open;
+      scrim.classList.toggle('opacity-0', !open);
+      scrim.classList.toggle('pointer-events-none', !open);
+      if (open) {
+        el('#closeCartBtn').focus();
+      }
+    }
+
+    // التحكم في نافذة تفاصيل الطبق (Quick View Modal)
+    function openDishModal(dishId) {
+      const dish = DISHES.find(d => d.id === Number(dishId));
+      if (!dish) return;
+
+      modalDishId = dish.id;
+      modalQuantity = 1;
+
+      el('#modalImg').src = dish.img;
+      el('#modalImg').alt = dish.name;
+      el('#modalImg').onerror = function() { this.src = FALLBACK_IMG; };
+      el('#modalBadge').textContent = dish.badge;
+      el('#modalTime').textContent = `⏱ التحضير: ${dish.time}`;
+      el('#modalCal').textContent = `🔥 ${dish.calories}`;
+      el('#modalTitle').textContent = dish.name;
+      el('#modalDesc').textContent = dish.desc;
+      el('#modalChefNote').textContent = dish.chefNote;
+      el('#modalPrice').textContent = formatPrice(dish.price);
+      el('#modalQty').textContent = toArabicDigits(modalQuantity);
+
+      const modal = el('#dishModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDishModal() {
+      const modal = el('#dishModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      modalDishId = null;
+    }
+
+    // تأكيد الطلب وتشغيل التتبع المباشر
+    function handlePlaceOrder() {
+      const ids = Object.keys(cart).map(Number);
+      const name = el('#customerName').value.trim();
+      const address = el('#customerAddress').value.trim();
+      const errorEl = el('#formError');
+
+      if (!ids.length) {
+        errorEl.textContent = 'يرجى إضافة طبق واحد على الأقل إلى السلة أولاً.';
+        return;
+      }
+      if (!name || !address) {
+        errorEl.textContent = 'يرجى إدخال الاسم الكامل وعنوان التوصيل لإتمام طلبك الفاخر.';
+        el('#cartDrawer').animate([
+          { transform: 'translateX(0)' },
+          { transform: 'translateX(-8px)' },
+          { transform: 'translateX(8px)' },
+          { transform: 'translateX(0)' }
+        ], { duration: 300 });
+        return;
+      }
+
+      errorEl.textContent = '';
+
+      const subtotal = ids.reduce((sum, id) => sum + DISHES.find(d => d.id === id).price * cart[id], 0);
+      const grandTotal = subtotal + DELIVERY_FEE;
+      const randomOrderNum = 1000 + Math.floor(Math.random() * 8999);
+
+      el('#orderNumberDisplay').textContent = `DF-${toArabicDigits(randomOrderNum)}`;
+      el('#orderTotalDisplay').textContent = formatPrice(grandTotal);
+
+      // تفريغ السلة وإغلاق الدرج
+      cart = {};
+      updateCartUI();
+      toggleCartDrawer(false);
+
+      // بدء شاشة التتبع
+      trackingStep = 0;
+      remainingMinutes = 30;
+      el('#trackingOverlay').classList.add('open');
+      renderTrackingState();
+
+      clearInterval(trackingTimer);
+      trackingTimer = setInterval(() => {
+        if (trackingStep < 3) {
+          trackingStep++;
+          remainingMinutes = Math.max(0, 30 - trackingStep * 10);
+          renderTrackingState();
+        }
+        if (trackingStep === 3) {
+          clearInterval(trackingTimer);
+        }
+      }, 3800);
+    }
+
+    function renderTrackingState() {
+      const progressPercent = (trackingStep / 3) * 100;
+      el('#trackingProgressBar').style.width = `${progressPercent}%`;
+      el('#trackingCourierPin').style.right = `${progressPercent}%`;
+
+      el('#trackingStepsGrid').innerHTML = TRACKING_STAGES.map((stage, index) => {
+        const isDone = index <= trackingStep;
+        return `
+          <div class="p-3 rounded-2xl border transition-all ${
+            isDone
+              ? 'bg-gold/15 border-gold/50 text-ivory'
+              : 'bg-obsidian/50 border-white/10 text-silver/60'
+          }">
+            <div class="w-7 h-7 rounded-full mx-auto mb-2 grid place-items-center text-xs font-bold ${
+              isDone ? 'bg-gold text-obsidian' : 'bg-velvetLight text-silver'
+            }">
+              ${toArabicDigits(index + 1)}
+            </div>
+            <span class="font-bold block leading-snug">${stage.title}</span>
+          </div>
+        `;
+      }).join('');
+
+      const currentStage = TRACKING_STAGES[trackingStep];
+      el('#trackingStatusTitle').textContent = currentStage.title;
+      el('#trackingEtaText').textContent = trackingStep < 3
+        ? `${currentStage.desc} • الوقت المتبقي للوصول: ${toArabicDigits(remainingMinutes)} دقيقة`
+        : currentStage.desc;
+
+      el('#orderAgainBtn').hidden = trackingStep < 3;
+    }
+
+    // ربط الأحداث التفاعلية
+    document.addEventListener('click', (e) => {
+      // إضافة طبق من البطاقة
+      const addBtn = e.target.closest('[data-add-id]');
+      if (addBtn) {
+        addToCart(addBtn.dataset.addId, 1, addBtn);
+        return;
+      }
+
+      // زيادة أو إنقاص الكمية في السلة
+      const incBtn = e.target.closest('[data-inc-id]');
+      if (incBtn) {
+        const id = Number(incBtn.dataset.incId);
+        cart[id] = (cart[id] || 0) + 1;
+        updateCartUI();
+        return;
+      }
+
+      const decBtn = e.target.closest('[data-dec-id]');
+      if (decBtn) {
+        const id = Number(decBtn.dataset.decId);
+        if (--cart[id] <= 0) delete cart[id];
+        updateCartUI();
+        return;
+      }
+
+      // تغيير التصنيف
+      const catBtn = e.target.closest('[data-cat]');
+      if (catBtn) {
+        activeCategory = catBtn.dataset.cat;
+        renderCategoryTabs();
+        renderDishesGrid();
+        return;
+      }
+    });
+
+    // أحداث الأزرار الثابتة
+    el('#openCartBtn').addEventListener('click', () => toggleCartDrawer(true));
+    el('#closeCartBtn').addEventListener('click', () => toggleCartDrawer(false));
+    el('#cartScrim').addEventListener('click', () => toggleCartDrawer(false));
+    el('#placeOrderBtn').addEventListener('click', handlePlaceOrder);
+
+    el('#searchInput').addEventListener('input', renderDishesGrid);
+    el('#searchBtn').addEventListener('click', () => {
+      el('#menu-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // أحداث نافذة المعاينة السريعة
+    el('#closeModalBtn').addEventListener('click', closeDishModal);
+    el('#dishModal').addEventListener('click', (e) => {
+      if (e.target === el('#dishModal')) closeDishModal();
+    });
+    el('#modalMinus').addEventListener('click', () => {
+      if (modalQuantity > 1) {
+        modalQuantity--;
+        el('#modalQty').textContent = toArabicDigits(modalQuantity);
+      }
+    });
+    el('#modalPlus').addEventListener('click', () => {
+      modalQuantity++;
+      el('#modalQty').textContent = toArabicDigits(modalQuantity);
+    });
+    el('#modalAddBtn').addEventListener('click', () => {
+      if (modalDishId !== null) {
+        addToCart(modalDishId, modalQuantity, el('#modalAddBtn'));
+        closeDishModal();
+      }
+    });
+
+    // زر اطلب مرة أخرى
+    el('#orderAgainBtn').addEventListener('click', () => {
+      el('#trackingOverlay').classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // إغلاق النوافذ بزر Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        toggleCartDrawer(false);
+        closeDishModal();
+      }
+    });
+
+    // التهيئة الأولية للتطبيق
+    renderFloatingPlates();
+    renderCategoryTabs();
+    renderDishesGrid();
+    updateCartUI();
+  </script>
+</body>
+</html>
